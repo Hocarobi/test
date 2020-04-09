@@ -72,15 +72,10 @@ if((digitalRead(r4)) == 0) {
 digitalWrite(r5, HIGH);
 
 }
- pinMode(r5, INPUT_PULLUP);
+pinMode(r5, INPUT_PULLUP);
 pinMode(r6, OUTPUT);
+delay(50);
 digitalWrite(r6, LOW);
-
-/*
-if((digitalRead(r5)) == 0 || ((digitalRead(r2)) == 0)){ // vrushta i SR
-Serial.println("Shift2");
-}
-*/
 
 if((digitalRead(r5)) == 0) {
  Serial.println("Shift5");
@@ -94,95 +89,76 @@ digitalWrite(r6, HIGH);
 
 delay(50);
 
+ 
+ //Encoder
  pinMode(r1, INPUT_PULLUP);
  pinMode(r3, INPUT_PULLUP);
  pinMode(r5, INPUT_PULLUP);
  pinMode(r2, OUTPUT);
  pinMode(r4, OUTPUT);
  pinMode(r6, OUTPUT);
- digitalWrite(r2, LOW);
  delay(50);
- if(digitalRead(r2) == 0) {
- Serial.println((digitalRead(r1)));
- Serial.println((digitalRead(r3)));
- Serial.println((digitalRead(r5)));
- }
-
+ digitalWrite(r2, LOW);
+ delay(10);
 
  c1 = digitalRead(r1);
  c3 = digitalRead(r3);
  c5 = digitalRead(r5);
  
-if(c1 != c1old) {
-  Serial.println("if c1");
-  if (c3old = 0) {
-    Serial.println("UP");
-  }
-  if (c5old = 0) {
-    Serial.println("Down");
-  }
+ Serial.print("RAW_R1=");
+ Serial.println((r1));
+ Serial.print("RAW_R3=");
+ Serial.println((r3));
+ Serial.print("RAW_R5=");
+ Serial.println((r5));
+ 
+if(c1 == 0) { 
+  if(c1 != c1old) {
+    Serial.println("if c1");
+    if (c3old = 0) {
+       Serial.println("UP");
+       }
+    if (c5old = 0) {
+       Serial.println("Down");
+       }
+   }
 }
 
-
-if(c3 != c3old) {
-  Serial.println("if c3");
-  if (c1old = 0) {
-    Serial.println("Down");
-  }
-  if (c3old = 0) {
-    Serial.println("UP");
-  }
-}
-
- if(c5 != c5old) {
-  Serial.println("if c5");
-  if (c3old = 0) {
-    Serial.println("UP");
-  }
-  if (c5old = 0) {
-    Serial.println("Down");
-  }
+if(c3 == 0) {
+  if(c3 != c3old) {
+    Serial.println("if c3");
+    if (c1old = 0) {
+       Serial.println("Down");
+       }
+    if (c3old = 0) {
+       Serial.println("UP");
+       }
+    }
  }
+
+ if(c5 == 0) {
+   if(c5 != c5old) {
+     Serial.println("if c5");
+     if (c3old = 0) {
+        Serial.println("UP");
+     }
+     if (c5old = 0) {
+        Serial.println("Down");
+     }
+   }
+ }
+ 
 c1old = c1;
 c3old = c3;
 c5old = c5;
-Serial.println("sep");
+ 
+Serial.print("OLD_R1=");
 Serial.println((c1old));
+Serial.print("OLD_R3=");
 Serial.println((c3old));
+Serial.print("OLD_R5=");
 Serial.println((c5old));
-
- /*
-int one;
-
-  int rr1 = 3;
- int rr3 = 3;
- int rr5 = 3;
-
- int rr1_old = 3;
- int rr3_old = 3;
- int rr5_old = 3;
-
-
- rr1 = digitalRead(r1);
- rr3 = digitalRead(r3);
- rr5 = digitalRead(r5);
-
-if(one == 1) {
- rr1 = rr1_old;
- rr3 = rr3_old;
- rr5 = rr5_old;
-  one = 0;
-}
-
-rr1 = digitalRead(r1);
-rr3 = digitalRead(r3);
-rr5 = digitalRead(r5);
-if((rr1 != rr1_old) && (rr3 != rr3_old)) {
-  Serial.print("change");
-}
-*/
  
  delay(500);
- 
 
 }
